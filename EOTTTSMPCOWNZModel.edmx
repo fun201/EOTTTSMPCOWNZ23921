@@ -1,0 +1,929 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EOTTTSMPCOWNZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccessServices">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="80" />
+          <Property Name="Path" Type="nvarchar" MaxLength="200" />
+          <Property Name="CouncilId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AGMMeetingMinutesFinancialReports">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="80" />
+          <Property Name="FileType" Type="nvarchar" MaxLength="100" />
+          <Property Name="DataFiles" Type="varbinary(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CouncilId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactLeadership">
+          <Key>
+            <PropertyRef Name="ContactLeadershipId" />
+          </Key>
+          <Property Name="ContactLeadershipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="int" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="500" />
+          <Property Name="CouncilId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Council">
+          <Key>
+            <PropertyRef Name="CouncilId" />
+          </Key>
+          <Property Name="CouncilId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="CouncilForum">
+          <Key>
+            <PropertyRef Name="CouncilForumId" />
+          </Key>
+          <Property Name="CouncilForumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="Agenda" Type="nvarchar(max)" />
+          <Property Name="CouncilId" Type="int" />
+        </EntityType>
+        <EntityType Name="Events_CalendarOfService&amp;Hours">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="Start" Type="datetime" />
+          <Property Name="End" Type="datetime" />
+          <Property Name="ThemeColor" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsFullDay" Type="bit" />
+          <Property Name="CouncilId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacilitiesForum">
+          <Key>
+            <PropertyRef Name="FacilitiesForumId" />
+          </Key>
+          <Property Name="FacilitiesForumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="Agenda" Type="nvarchar(max)" />
+          <Property Name="ForumDate" Type="datetime" />
+          <Property Name="CouncilId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fundraising">
+          <Key>
+            <PropertyRef Name="FundraisingId" />
+          </Key>
+          <Property Name="FundraisingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="30" />
+          <Property Name="Address" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="FundTitle" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="CouncilId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FundraisingForum">
+          <Key>
+            <PropertyRef Name="FundraisingForumId" />
+          </Key>
+          <Property Name="FundraisingForumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="Agenda" Type="nvarchar(max)" />
+          <Property Name="ForumDate" Type="datetime" />
+          <Property Name="CouncilId" Type="int" Nullable="false" />
+          <Property Name="FundraisingId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sundayschool">
+          <Key>
+            <PropertyRef Name="SundayschoolId" />
+          </Key>
+          <Property Name="SundayschoolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstMidName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="15" />
+          <Property Name="EnrollmentDate" Type="datetime" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="CouncilId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SundayschoolForum">
+          <Key>
+            <PropertyRef Name="SundayschoolForumId" />
+          </Key>
+          <Property Name="SundayschoolForumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="Agenda" Type="nvarchar(max)" />
+          <Property Name="ForumDate" Type="datetime" />
+          <Property Name="CouncilId" Type="int" Nullable="false" />
+          <Property Name="SundayschoolId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AccessServices_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AccessServices" Type="Self.AccessServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="AccessServices">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AGMMeetingMinutesFinancialReports_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AGMMeetingMinutesFinancialReports" Type="Self.AGMMeetingMinutesFinancialReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="AGMMeetingMinutesFinancialReports">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ContactLeadership_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ContactLeadership" Type="Self.ContactLeadership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="ContactLeadership">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CouncilForum_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CouncilForum" Type="Self.CouncilForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="CouncilForum">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Events_CalendarOfService&amp;Hours_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Events_CalendarOfService&amp;Hours" Type="Self.Events_CalendarOfService&amp;Hours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="Events_CalendarOfService&amp;Hours">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Fundraising_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Fundraising" Type="Self.Fundraising" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="Fundraising">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sundayschool_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sundayschool" Type="Self.Sundayschool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="Sundayschool">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacilitiesForum_ToTable">
+          <End Role="Council" Type="Self.Council" Multiplicity="1" />
+          <End Role="FacilitiesForum" Type="Self.FacilitiesForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="FacilitiesForum">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FundraisingForum_ToTable">
+          <End Role="Council" Type="Self.Council" Multiplicity="1" />
+          <End Role="FundraisingForum" Type="Self.FundraisingForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="FundraisingForum">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FundraisingForum_ToTable_1">
+          <End Role="Fundraising" Type="Self.Fundraising" Multiplicity="1" />
+          <End Role="FundraisingForum" Type="Self.FundraisingForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fundraising">
+              <PropertyRef Name="FundraisingId" />
+            </Principal>
+            <Dependent Role="FundraisingForum">
+              <PropertyRef Name="FundraisingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SundayschoolForum_ToTable">
+          <End Role="Council" Type="Self.Council" Multiplicity="1" />
+          <End Role="SundayschoolForum" Type="Self.SundayschoolForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="SundayschoolForum">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SundayschoolForum_ToTable_1">
+          <End Role="Sundayschool" Type="Self.Sundayschool" Multiplicity="1" />
+          <End Role="SundayschoolForum" Type="Self.SundayschoolForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sundayschool">
+              <PropertyRef Name="SundayschoolId" />
+            </Principal>
+            <Dependent Role="SundayschoolForum">
+              <PropertyRef Name="SundayschoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EOTTTSMPCOWNZModelStoreContainer">
+          <EntitySet Name="AccessServices" EntityType="Self.AccessServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AGMMeetingMinutesFinancialReports" EntityType="Self.AGMMeetingMinutesFinancialReports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactLeadership" EntityType="Self.ContactLeadership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Council" EntityType="Self.Council" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CouncilForum" EntityType="Self.CouncilForum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events_CalendarOfService&amp;Hours" EntityType="Self.Events_CalendarOfService&amp;Hours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacilitiesForum" EntityType="Self.FacilitiesForum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fundraising" EntityType="Self.Fundraising" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FundraisingForum" EntityType="Self.FundraisingForum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sundayschool" EntityType="Self.Sundayschool" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SundayschoolForum" EntityType="Self.SundayschoolForum" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AccessServices_dbo_Council_CouncilId" Association="Self.FK_dbo_AccessServices_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="AccessServices" EntitySet="AccessServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AGMMeetingMinutesFinancialReports_dbo_Council_CouncilId" Association="Self.FK_dbo_AGMMeetingMinutesFinancialReports_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="AGMMeetingMinutesFinancialReports" EntitySet="AGMMeetingMinutesFinancialReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ContactLeadership_dbo_Council_CouncilId" Association="Self.FK_dbo_ContactLeadership_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="ContactLeadership" EntitySet="ContactLeadership" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CouncilForum_dbo_Council_CouncilId" Association="Self.FK_dbo_CouncilForum_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="CouncilForum" EntitySet="CouncilForum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Events_CalendarOfService&amp;Hours_dbo_Council_CouncilId" Association="Self.FK_dbo_Events_CalendarOfService&amp;Hours_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="Events_CalendarOfService&amp;Hours" EntitySet="Events_CalendarOfService&amp;Hours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Fundraising_dbo_Council_CouncilId" Association="Self.FK_dbo_Fundraising_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="Fundraising" EntitySet="Fundraising" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sundayschool_dbo_Council_CouncilId" Association="Self.FK_dbo_Sundayschool_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="Sundayschool" EntitySet="Sundayschool" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacilitiesForum_ToTable" Association="Self.FK_FacilitiesForum_ToTable">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="FacilitiesForum" EntitySet="FacilitiesForum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FundraisingForum_ToTable" Association="Self.FK_FundraisingForum_ToTable">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="FundraisingForum" EntitySet="FundraisingForum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FundraisingForum_ToTable_1" Association="Self.FK_FundraisingForum_ToTable_1">
+            <End Role="Fundraising" EntitySet="Fundraising" />
+            <End Role="FundraisingForum" EntitySet="FundraisingForum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SundayschoolForum_ToTable" Association="Self.FK_SundayschoolForum_ToTable">
+            <End Role="Council" EntitySet="Council" />
+            <End Role="SundayschoolForum" EntitySet="SundayschoolForum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SundayschoolForum_ToTable_1" Association="Self.FK_SundayschoolForum_ToTable_1">
+            <End Role="Sundayschool" EntitySet="Sundayschool" />
+            <End Role="SundayschoolForum" EntitySet="SundayschoolForum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EOTTTSMPCOWNZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccessService">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CouncilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_dbo_AccessServices_dbo_Council_CouncilId" FromRole="AccessServices" ToRole="Council" />
+        </EntityType>
+        <EntityType Name="AGMMeetingMinutesFinancialReport">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FileType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DataFiles" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CouncilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_dbo_AGMMeetingMinutesFinancialReports_dbo_Council_CouncilId" FromRole="AGMMeetingMinutesFinancialReports" ToRole="Council" />
+        </EntityType>
+        <EntityType Name="ContactLeadership">
+          <Key>
+            <PropertyRef Name="ContactLeadershipId" />
+          </Key>
+          <Property Name="ContactLeadershipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CouncilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_dbo_ContactLeadership_dbo_Council_CouncilId" FromRole="ContactLeadership" ToRole="Council" />
+        </EntityType>
+        <EntityType Name="Council">
+          <Key>
+            <PropertyRef Name="CouncilId" />
+          </Key>
+          <Property Name="CouncilId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccessServices" Relationship="Self.FK_dbo_AccessServices_dbo_Council_CouncilId" FromRole="Council" ToRole="AccessServices" />
+          <NavigationProperty Name="AGMMeetingMinutesFinancialReports" Relationship="Self.FK_dbo_AGMMeetingMinutesFinancialReports_dbo_Council_CouncilId" FromRole="Council" ToRole="AGMMeetingMinutesFinancialReports" />
+          <NavigationProperty Name="ContactLeaderships" Relationship="Self.FK_dbo_ContactLeadership_dbo_Council_CouncilId" FromRole="Council" ToRole="ContactLeadership" />
+          <NavigationProperty Name="CouncilForums" Relationship="Self.FK_dbo_CouncilForum_dbo_Council_CouncilId" FromRole="Council" ToRole="CouncilForum" />
+          <NavigationProperty Name="Events_CalendarOfService_Hours" Relationship="Self.FK_dbo_Events_CalendarOfService_Hours_dbo_Council_CouncilId" FromRole="Council" ToRole="Events_CalendarOfService_Hours" />
+          <NavigationProperty Name="Fundraisings" Relationship="Self.FK_dbo_Fundraising_dbo_Council_CouncilId" FromRole="Council" ToRole="Fundraising" />
+          <NavigationProperty Name="Sundayschools" Relationship="Self.FK_dbo_Sundayschool_dbo_Council_CouncilId" FromRole="Council" ToRole="Sundayschool" />
+          <NavigationProperty Name="FacilitiesForums" Relationship="Self.FK_FacilitiesForum_ToTable" FromRole="Council" ToRole="FacilitiesForum" />
+          <NavigationProperty Name="FundraisingForums" Relationship="Self.FK_FundraisingForum_ToTable" FromRole="Council" ToRole="FundraisingForum" />
+          <NavigationProperty Name="SundayschoolForums" Relationship="Self.FK_SundayschoolForum_ToTable" FromRole="Council" ToRole="SundayschoolForum" />
+        </EntityType>
+        <EntityType Name="CouncilForum">
+          <Key>
+            <PropertyRef Name="CouncilForumId" />
+          </Key>
+          <Property Name="CouncilForumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Agenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CouncilId" Type="Int32" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_dbo_CouncilForum_dbo_Council_CouncilId" FromRole="CouncilForum" ToRole="Council" />
+        </EntityType>
+        <EntityType Name="Events_CalendarOfService_Hours">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Start" Type="DateTime" Precision="3" />
+          <Property Name="End" Type="DateTime" Precision="3" />
+          <Property Name="ThemeColor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsFullDay" Type="Boolean" />
+          <Property Name="CouncilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_dbo_Events_CalendarOfService_Hours_dbo_Council_CouncilId" FromRole="Events_CalendarOfService_Hours" ToRole="Council" />
+        </EntityType>
+        <EntityType Name="FacilitiesForum">
+          <Key>
+            <PropertyRef Name="FacilitiesForumId" />
+          </Key>
+          <Property Name="FacilitiesForumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Agenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ForumDate" Type="DateTime" Precision="3" />
+          <Property Name="CouncilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_FacilitiesForum_ToTable" FromRole="FacilitiesForum" ToRole="Council" />
+        </EntityType>
+        <EntityType Name="Fundraising">
+          <Key>
+            <PropertyRef Name="FundraisingId" />
+          </Key>
+          <Property Name="FundraisingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FundTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CouncilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_dbo_Fundraising_dbo_Council_CouncilId" FromRole="Fundraising" ToRole="Council" />
+          <NavigationProperty Name="FundraisingForums" Relationship="Self.FK_FundraisingForum_ToTable_1" FromRole="Fundraising" ToRole="FundraisingForum" />
+        </EntityType>
+        <EntityType Name="FundraisingForum">
+          <Key>
+            <PropertyRef Name="FundraisingForumId" />
+          </Key>
+          <Property Name="FundraisingForumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Agenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ForumDate" Type="DateTime" Precision="3" />
+          <Property Name="CouncilId" Type="Int32" Nullable="false" />
+          <Property Name="FundraisingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_FundraisingForum_ToTable" FromRole="FundraisingForum" ToRole="Council" />
+          <NavigationProperty Name="Fundraising" Relationship="Self.FK_FundraisingForum_ToTable_1" FromRole="FundraisingForum" ToRole="Fundraising" />
+        </EntityType>
+        <EntityType Name="Sundayschool">
+          <Key>
+            <PropertyRef Name="SundayschoolId" />
+          </Key>
+          <Property Name="SundayschoolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstMidName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EnrollmentDate" Type="DateTime" Precision="3" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CouncilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_dbo_Sundayschool_dbo_Council_CouncilId" FromRole="Sundayschool" ToRole="Council" />
+          <NavigationProperty Name="SundayschoolForums" Relationship="Self.FK_SundayschoolForum_ToTable_1" FromRole="Sundayschool" ToRole="SundayschoolForum" />
+        </EntityType>
+        <EntityType Name="SundayschoolForum">
+          <Key>
+            <PropertyRef Name="SundayschoolForumId" />
+          </Key>
+          <Property Name="SundayschoolForumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Agenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ForumDate" Type="DateTime" Precision="3" />
+          <Property Name="CouncilId" Type="Int32" Nullable="false" />
+          <Property Name="SundayschoolId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Council" Relationship="Self.FK_SundayschoolForum_ToTable" FromRole="SundayschoolForum" ToRole="Council" />
+          <NavigationProperty Name="Sundayschool" Relationship="Self.FK_SundayschoolForum_ToTable_1" FromRole="SundayschoolForum" ToRole="Sundayschool" />
+        </EntityType>
+        <Association Name="FK_dbo_AccessServices_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AccessServices" Type="Self.AccessService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="AccessServices">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AGMMeetingMinutesFinancialReports_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AGMMeetingMinutesFinancialReports" Type="Self.AGMMeetingMinutesFinancialReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="AGMMeetingMinutesFinancialReports">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ContactLeadership_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ContactLeadership" Type="Self.ContactLeadership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="ContactLeadership">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CouncilForum_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CouncilForum" Type="Self.CouncilForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="CouncilForum">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Events_CalendarOfService_Hours_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Events_CalendarOfService_Hours" Type="Self.Events_CalendarOfService_Hours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="Events_CalendarOfService_Hours">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Fundraising_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Fundraising" Type="Self.Fundraising" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="Fundraising">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sundayschool_dbo_Council_CouncilId">
+          <End Role="Council" Type="Self.Council" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sundayschool" Type="Self.Sundayschool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="Sundayschool">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacilitiesForum_ToTable">
+          <End Role="Council" Type="Self.Council" Multiplicity="1" />
+          <End Role="FacilitiesForum" Type="Self.FacilitiesForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="FacilitiesForum">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FundraisingForum_ToTable">
+          <End Role="Council" Type="Self.Council" Multiplicity="1" />
+          <End Role="FundraisingForum" Type="Self.FundraisingForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="FundraisingForum">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SundayschoolForum_ToTable">
+          <End Role="Council" Type="Self.Council" Multiplicity="1" />
+          <End Role="SundayschoolForum" Type="Self.SundayschoolForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Council">
+              <PropertyRef Name="CouncilId" />
+            </Principal>
+            <Dependent Role="SundayschoolForum">
+              <PropertyRef Name="CouncilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FundraisingForum_ToTable_1">
+          <End Role="Fundraising" Type="Self.Fundraising" Multiplicity="1" />
+          <End Role="FundraisingForum" Type="Self.FundraisingForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fundraising">
+              <PropertyRef Name="FundraisingId" />
+            </Principal>
+            <Dependent Role="FundraisingForum">
+              <PropertyRef Name="FundraisingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SundayschoolForum_ToTable_1">
+          <End Role="Sundayschool" Type="Self.Sundayschool" Multiplicity="1" />
+          <End Role="SundayschoolForum" Type="Self.SundayschoolForum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sundayschool">
+              <PropertyRef Name="SundayschoolId" />
+            </Principal>
+            <Dependent Role="SundayschoolForum">
+              <PropertyRef Name="SundayschoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EOTTTSMPCOWNZEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccessServices" EntityType="Self.AccessService" />
+          <EntitySet Name="AGMMeetingMinutesFinancialReports" EntityType="Self.AGMMeetingMinutesFinancialReport" />
+          <EntitySet Name="ContactLeaderships" EntityType="Self.ContactLeadership" />
+          <EntitySet Name="Councils" EntityType="Self.Council" />
+          <EntitySet Name="CouncilForums" EntityType="Self.CouncilForum" />
+          <EntitySet Name="Events_CalendarOfService_Hours" EntityType="Self.Events_CalendarOfService_Hours" />
+          <EntitySet Name="FacilitiesForums" EntityType="Self.FacilitiesForum" />
+          <EntitySet Name="Fundraisings" EntityType="Self.Fundraising" />
+          <EntitySet Name="FundraisingForums" EntityType="Self.FundraisingForum" />
+          <EntitySet Name="Sundayschools" EntityType="Self.Sundayschool" />
+          <EntitySet Name="SundayschoolForums" EntityType="Self.SundayschoolForum" />
+          <AssociationSet Name="FK_dbo_AccessServices_dbo_Council_CouncilId" Association="Self.FK_dbo_AccessServices_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="AccessServices" EntitySet="AccessServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AGMMeetingMinutesFinancialReports_dbo_Council_CouncilId" Association="Self.FK_dbo_AGMMeetingMinutesFinancialReports_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="AGMMeetingMinutesFinancialReports" EntitySet="AGMMeetingMinutesFinancialReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ContactLeadership_dbo_Council_CouncilId" Association="Self.FK_dbo_ContactLeadership_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="ContactLeadership" EntitySet="ContactLeaderships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CouncilForum_dbo_Council_CouncilId" Association="Self.FK_dbo_CouncilForum_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="CouncilForum" EntitySet="CouncilForums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Events_CalendarOfService_Hours_dbo_Council_CouncilId" Association="Self.FK_dbo_Events_CalendarOfService_Hours_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="Events_CalendarOfService_Hours" EntitySet="Events_CalendarOfService_Hours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Fundraising_dbo_Council_CouncilId" Association="Self.FK_dbo_Fundraising_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="Fundraising" EntitySet="Fundraisings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sundayschool_dbo_Council_CouncilId" Association="Self.FK_dbo_Sundayschool_dbo_Council_CouncilId">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="Sundayschool" EntitySet="Sundayschools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacilitiesForum_ToTable" Association="Self.FK_FacilitiesForum_ToTable">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="FacilitiesForum" EntitySet="FacilitiesForums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FundraisingForum_ToTable" Association="Self.FK_FundraisingForum_ToTable">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="FundraisingForum" EntitySet="FundraisingForums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SundayschoolForum_ToTable" Association="Self.FK_SundayschoolForum_ToTable">
+            <End Role="Council" EntitySet="Councils" />
+            <End Role="SundayschoolForum" EntitySet="SundayschoolForums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FundraisingForum_ToTable_1" Association="Self.FK_FundraisingForum_ToTable_1">
+            <End Role="Fundraising" EntitySet="Fundraisings" />
+            <End Role="FundraisingForum" EntitySet="FundraisingForums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SundayschoolForum_ToTable_1" Association="Self.FK_SundayschoolForum_ToTable_1">
+            <End Role="Sundayschool" EntitySet="Sundayschools" />
+            <End Role="SundayschoolForum" EntitySet="SundayschoolForums" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EOTTTSMPCOWNZModelStoreContainer" CdmEntityContainer="EOTTTSMPCOWNZEntities">
+          <EntitySetMapping Name="AccessServices">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.AccessService">
+              <MappingFragment StoreEntitySet="AccessServices">
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AGMMeetingMinutesFinancialReports">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.AGMMeetingMinutesFinancialReport">
+              <MappingFragment StoreEntitySet="AGMMeetingMinutesFinancialReports">
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="DataFiles" ColumnName="DataFiles" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactLeaderships">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.ContactLeadership">
+              <MappingFragment StoreEntitySet="ContactLeadership">
+                <ScalarProperty Name="ContactLeadershipId" ColumnName="ContactLeadershipId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Councils">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.Council">
+              <MappingFragment StoreEntitySet="Council">
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CouncilForums">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.CouncilForum">
+              <MappingFragment StoreEntitySet="CouncilForum">
+                <ScalarProperty Name="CouncilForumId" ColumnName="CouncilForumId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events_CalendarOfService_Hours">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.Events_CalendarOfService_Hours">
+              <MappingFragment StoreEntitySet="Events_CalendarOfService&amp;Hours">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="ThemeColor" ColumnName="ThemeColor" />
+                <ScalarProperty Name="IsFullDay" ColumnName="IsFullDay" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacilitiesForums">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.FacilitiesForum">
+              <MappingFragment StoreEntitySet="FacilitiesForum">
+                <ScalarProperty Name="FacilitiesForumId" ColumnName="FacilitiesForumId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+                <ScalarProperty Name="ForumDate" ColumnName="ForumDate" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fundraisings">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.Fundraising">
+              <MappingFragment StoreEntitySet="Fundraising">
+                <ScalarProperty Name="FundraisingId" ColumnName="FundraisingId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="FundTitle" ColumnName="FundTitle" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FundraisingForums">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.FundraisingForum">
+              <MappingFragment StoreEntitySet="FundraisingForum">
+                <ScalarProperty Name="FundraisingForumId" ColumnName="FundraisingForumId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+                <ScalarProperty Name="ForumDate" ColumnName="ForumDate" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+                <ScalarProperty Name="FundraisingId" ColumnName="FundraisingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sundayschools">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.Sundayschool">
+              <MappingFragment StoreEntitySet="Sundayschool">
+                <ScalarProperty Name="SundayschoolId" ColumnName="SundayschoolId" />
+                <ScalarProperty Name="FirstMidName" ColumnName="FirstMidName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EnrollmentDate" ColumnName="EnrollmentDate" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SundayschoolForums">
+            <EntityTypeMapping TypeName="EOTTTSMPCOWNZModel.SundayschoolForum">
+              <MappingFragment StoreEntitySet="SundayschoolForum">
+                <ScalarProperty Name="SundayschoolForumId" ColumnName="SundayschoolForumId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+                <ScalarProperty Name="ForumDate" ColumnName="ForumDate" />
+                <ScalarProperty Name="CouncilId" ColumnName="CouncilId" />
+                <ScalarProperty Name="SundayschoolId" ColumnName="SundayschoolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
